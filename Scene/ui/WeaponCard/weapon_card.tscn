@@ -1,0 +1,71 @@
+[gd_scene format=3 uid="uid://66npmb374d6c"]
+
+[ext_resource type="Texture2D" uid="uid://dy8e3xkc5qdbp" path="res://01.基础资源/Assets/Sprites/Interface/Tilemap/tilemap_packed.png" id="1_2gglp"]
+[ext_resource type="Texture2D" uid="uid://cqvwy8c5l0aod" path="res://01.基础资源/Assets/Sprites/Tiles/Weapons/Tiles/tile_0001.png" id="2_kir4p"]
+[ext_resource type="Script" uid="uid://cuf1ioxhhre16" path="res://Scene/ui/WeaponCard/weapon_card.gd" id="2_xw0om"]
+[ext_resource type="Texture2D" uid="uid://btvvlw1s6noca" path="res://01.基础资源/Assets/Sprites/Interface/Selector.png" id="4_kqej0"]
+[ext_resource type="AudioStream" uid="uid://dlyw3ke5ldgn7" path="res://01.基础资源/Assets/Sounds/button_hover.wav" id="4_xw0om"]
+[ext_resource type="PackedScene" uid="uid://bmxde6tsehq6m" path="res://Scene/ui/DescriptionPanel/description_panel.tscn" id="6_lcmc6"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hy6ny"]
+atlas = ExtResource("1_2gglp")
+region = Rect2(193, 1, 46, 46)
+
+[node name="WeaponCard" type="TextureButton" unique_id=490583837]
+texture_normal = SubResource("AtlasTexture_hy6ny")
+stretch_mode = 5
+script = ExtResource("2_xw0om")
+
+[node name="Icon" type="TextureRect" parent="." unique_id=243639157]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+mouse_filter = 2
+texture = ExtResource("2_kir4p")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Selector" type="TextureRect" parent="." unique_id=1793582305]
+visible = false
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -25.0
+offset_top = -25.0
+offset_right = 25.0
+offset_bottom = 25.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_kqej0")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="HoverSound" type="AudioStreamPlayer" parent="." unique_id=1842418158]
+stream = ExtResource("4_xw0om")
+bus = &"SFX"
+
+[node name="DescriptionPanel" parent="." unique_id=1562304822 instance=ExtResource("6_lcmc6")]
+visible = false
+layout_mode = 1
+offset_left = -72.0
+offset_top = -103.0
+offset_right = 82.0
+offset_bottom = -49.0
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

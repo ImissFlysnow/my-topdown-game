@@ -1,0 +1,18 @@
+[gd_scene load_steps=5 format=3]
+[ext_resource type="PackedScene" path="res://Scene/Enemies/enemy.tscn" id="1"]
+[ext_resource type="Script" path="res://Scene/Enemies/boss.gd" id="2"]
+[ext_resource type="Resource" path="res://Data/Enemies/boss.tres" id="3"]
+[ext_resource type="SpriteFrames" path="res://Assets/Boss/sentinel_frames.tres" id="4"]
+[node name="DungeonBoss" instance=ExtResource("1")]
+script = ExtResource("2")
+data = ExtResource("3")
+
+[node name="Sprite2D" parent="Visuals" index="1"]
+visible = false
+
+[node name="BossAnimation" type="AnimatedSprite2D" parent="Visuals" index="2"]
+position = Vector2(0, -39)
+scale = Vector2(0.2934609, 0.2934609)
+sprite_frames = ExtResource("4")
+animation = &"idle"
+autoplay = "idle"

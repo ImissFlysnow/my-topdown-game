@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://dwua0f6h25xh4"]
+
+[ext_resource type="Script" uid="uid://c1shdon1cb12c" path="res://Scene/Play/player.gd" id="1_f1bxl"]
+[ext_resource type="Texture2D" uid="uid://dawvmsgg5mc6o" path="res://01.基础资源/Assets/Sprites/Shadow.png" id="2_7dkkc"]
+[ext_resource type="PackedScene" uid="uid://ds7lj0s8u6oo2" path="res://Scene/Components/health_component.tscn" id="3_dryoa"]
+[ext_resource type="Script" uid="uid://bea0tx1sc1vvx" path="res://Scene/Play/weapon_controller.gd" id="4_pal2v"]
+
+[node name="PlayerBase" type="CharacterBody2D" unique_id=426256636]
+collision_layer = 2
+collision_mask = 1
+script = ExtResource("1_f1bxl")
+
+[node name="Visuals" type="Node2D" parent="." unique_id=1060328588]
+
+[node name="Shadow" type="Sprite2D" parent="Visuals" unique_id=1256182044]
+scale = Vector2(1.2, 1)
+texture = ExtResource("2_7dkkc")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Visuals" unique_id=1272264478]
+unique_name_in_owner = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=996067338]
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1625900530]
+
+[node name="HealthComponent" parent="." unique_id=1973608450 instance=ExtResource("3_dryoa")]
+
+[node name="WeaponController" type="Node2D" parent="." unique_id=1235891516]
+script = ExtResource("4_pal2v")
+
+[connection signal="on_unit_damaged" from="HealthComponent" to="." method="_on_health_component_on_unit_damaged"]
+[connection signal="on_unit_dead" from="HealthComponent" to="." method="_on_health_component_on_unit_dead"]
+[connection signal="on_unit_healed" from="HealthComponent" to="." method="_on_health_component_on_unit_healed"]

@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=3 format=3]
+[ext_resource type="Script" path="res://Data/Items/item_data.gd" id="1"]
+[ext_resource type="Texture2D" path="res://01.基础资源/Assets/Sprites/Items/Item_White6.png" id="2"]
+[resource]
+script = ExtResource("1")
+item_name = "寒晶碎片"
+kind = 10
+icon = ExtResource("2")
+amount = 0.1
+requires_ranged = false
+description = "水伤 +10%，20% 概率\n减速 25%，持续 1.5 秒"
+shop_price = 10

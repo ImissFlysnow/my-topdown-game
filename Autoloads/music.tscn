@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://t3bw5nwr1fiq"]
+
+[ext_resource type="AudioStream" uid="uid://dvdn8parrbyvc" path="res://01.基础资源/Assets/Sounds/Bg Music.mp3" id="1_8261y"]
+[ext_resource type="Script" path="res://Autoloads/music.gd" id="2_cleanup"]
+
+[node name="Music" type="AudioStreamPlayer" unique_id=1967634664]
+stream = ExtResource("1_8261y")
+volume_db = -15.102
+autoplay = true
+bus = &"Music"
+script = ExtResource("2_cleanup")

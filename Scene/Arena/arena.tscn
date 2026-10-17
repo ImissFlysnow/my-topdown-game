@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://6k24cg4oofif"]
+
+[ext_resource type="Script" path="res://Scene/Arena/arena.gd" id="1"]
+[ext_resource type="Script" path="res://Scene/Dungeon/dungeon_generator.gd" id="2"]
+[ext_resource type="Texture2D" path="res://01.基础资源/Assets/Sprites/Tiles/Weapons/Tiles/tile_0025.png" id="3"]
+
+[node name="Arena" type="Node2D"]
+script = ExtResource("1")
+arena_cursor = ExtResource("3")
+
+[node name="Dungeon" type="Node2D" parent="."]
+script = ExtResource("2")
+
+[node name="Actors" type="Node2D" parent="."]
+y_sort_enabled = true

@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://bmxde6tsehq6m"]
+
+[ext_resource type="Script" uid="uid://fjfa6origkav" path="res://Scene/ui/DescriptionPanel/description_panel.gd" id="1_8xwxv"]
+[ext_resource type="Texture2D" uid="uid://c5vwsotmmnflp" path="res://01.基础资源/Assets/Sprites/Interface/itembg.png" id="2_lyylo"]
+[ext_resource type="LabelSettings" uid="uid://c578xsh8avb1n" path="res://Extra/font_16.tres" id="3_ox1bk"]
+
+[node name="DescriptionPanel" type="Control" unique_id=1562304822]
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_right = -460.0
+offset_bottom = -260.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+script = ExtResource("1_8xwxv")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="." unique_id=546734970]
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_lyylo")
+patch_margin_left = 20
+patch_margin_top = 20
+patch_margin_right = 20
+patch_margin_bottom = 20
+
+[node name="Label" type="Label" parent="NinePatchRect" unique_id=1049239450]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "TESTING"
+label_settings = ExtResource("3_ox1bk")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2

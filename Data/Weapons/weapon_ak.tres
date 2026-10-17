@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="WeaponData" format=3 uid="uid://ovlwc808bldg"]
+
+[ext_resource type="Texture2D" uid="uid://bpa7uv0kkmria" path="res://01.基础资源/Assets/Sprites/Tiles/Weapons/Tiles/tile_0005.png" id="1_ms0g4"]
+[ext_resource type="PackedScene" uid="uid://drwhkdhikfxce" path="res://Scene/Bullets/bullet_ak.tscn" id="1_vs4in"]
+[ext_resource type="Script" uid="uid://c1aew7mkftj1p" path="res://Data/Weapons/weapon_data.gd" id="2_vs4in"]
+
+[resource]
+script = ExtResource("2_vs4in")
+weapon_name = "AK47"
+icon = ExtResource("1_ms0g4")
+damage = 1.0
+cooldown = 0.3
+mana_cost = 1.0
+spread = 7.0
+bullet_speed = 300.0
+bullet_scene = ExtResource("1_vs4in")
+metadata/_custom_type_script = "uid://c1aew7mkftj1p"

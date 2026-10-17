@@ -1,0 +1,14 @@
+[gd_scene load_steps=5 format=3]
+[ext_resource type="PackedScene" path="res://Scene/Enemies/boss.tscn" id="1"]
+[ext_resource type="Script" path="res://Scene/Enemies/boss_warden.gd" id="2"]
+[ext_resource type="Resource" path="res://Data/Enemies/bastion_warden.tres" id="3"]
+[ext_resource type="SpriteFrames" path="res://Assets/Boss/bastion_warden_frames.tres" id="4"]
+[node name="bastion_warden" instance=ExtResource("1")]
+script = ExtResource("2")
+data = ExtResource("3")
+render_size = 104.0
+normal_skill_interval = 2.6
+enraged_skill_interval = 1.9
+[node name="BossAnimation" parent="Visuals" index="2"]
+sprite_frames = ExtResource("4")
+animation = &"idle"

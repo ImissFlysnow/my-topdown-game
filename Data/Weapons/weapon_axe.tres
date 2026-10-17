@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="WeaponData" format=3 uid="uid://utttjspysk11"]
+
+[ext_resource type="Texture2D" uid="uid://hm683tll4af4" path="res://01.基础资源/Assets/Sprites/Tiles/Weapons/Tiles/tile_0009.png" id="1_q05is"]
+[ext_resource type="Script" uid="uid://c1aew7mkftj1p" path="res://Data/Weapons/weapon_data.gd" id="2_piikj"]
+
+[resource]
+script = ExtResource("2_piikj")
+weapon_name = "Axe"
+icon = ExtResource("1_q05is")
+damage = 0.9
+cooldown = 0.3
+mana_cost = 0.3
+melee_range = 58.0
+melee_arc = 160.0
+attack_duration = 0.18
+knockback = 190.0
+description = "宽幅挥砍，击退前方多个敌人。"
+metadata/_custom_type_script = "uid://c1aew7mkftj1p"

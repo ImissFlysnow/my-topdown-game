@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="EnemyData" load_steps=3 format=3]
+[ext_resource type="Script" path="res://Data/Enemies/enemy_data.gd" id="1"]
+[ext_resource type="Texture2D" path="res://01.基础资源/Assets/Sprites/Enemies/Sprites/tile_0008.png" id="2"]
+[resource]
+script = ExtResource("1")
+enemy_name = "疾行怪"
+texture = ExtResource("2")
+max_health = 3.3
+move_speed = 105.0
+contact_damage = 1.0
+experience = 4
+coins = 1
+size_scale = 0.90
+knockback_resistance = 1.25

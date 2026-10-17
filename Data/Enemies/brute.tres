@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="EnemyData" load_steps=3 format=3]
+[ext_resource type="Script" path="res://Data/Enemies/enemy_data.gd" id="1"]
+[ext_resource type="Texture2D" path="res://01.基础资源/Assets/Sprites/Enemies/Sprites/tile_0012.png" id="2"]
+[resource]
+script = ExtResource("1")
+elite = true
+enemy_name = "重装怪"
+texture = ExtResource("2")
+max_health = 15.0
+move_speed = 43.0
+contact_damage = 2.0
+experience = 8
+coins = 3
+size_scale = 1.40
+knockback_resistance = 0.45

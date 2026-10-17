@@ -1,0 +1,66 @@
+[gd_scene format=3 uid="uid://b2afpp5hse064"]
+
+[ext_resource type="Texture2D" uid="uid://62erre4aea2m" path="res://01.基础资源/Assets/Sprites/Tiles/Weapons/All_Fire_Bullet_Pixel_16x16_00.png" id="1_ktokg"]
+[ext_resource type="Script" uid="uid://dakq1m31kxbxx" path="res://Scene/Bullets/bullet_pistol.gd" id="1_w785j"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w785j"]
+atlas = ExtResource("1_ktokg")
+region = Rect2(0, 208, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gb6x7"]
+atlas = ExtResource("1_ktokg")
+region = Rect2(16, 208, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ikmlp"]
+atlas = ExtResource("1_ktokg")
+region = Rect2(32, 208, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vv5w8"]
+atlas = ExtResource("1_ktokg")
+region = Rect2(48, 208, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wcbgu"]
+atlas = ExtResource("1_ktokg")
+region = Rect2(64, 208, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_56713"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w785j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gb6x7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ikmlp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vv5w8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wcbgu")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 30.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_sft8s"]
+radius = 5.0
+
+[node name="BulletPistol" type="Area2D" unique_id=1123760725]
+collision_layer = 8
+collision_mask = 5
+script = ExtResource("1_w785j")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=292965625]
+sprite_frames = SubResource("SpriteFrames_56713")
+autoplay = "default"
+frame_progress = 0.80782455
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=960376264]
+position = Vector2(0, 1)
+shape = SubResource("CircleShape2D_sft8s")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

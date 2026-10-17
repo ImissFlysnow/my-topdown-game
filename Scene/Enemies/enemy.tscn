@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://Scene/Enemies/enemy.gd" id="1"]
+[ext_resource type="PackedScene" path="res://Scene/Components/health_component.tscn" id="2"]
+[ext_resource type="Texture2D" path="res://01.基础资源/Assets/Sprites/Shadow.png" id="3"]
+[ext_resource type="AudioStream" path="res://01.基础资源/Assets/Sounds/enemy_hurt_1.ogg" id="4"]
+
+[node name="Enemy" type="CharacterBody2D"]
+script = ExtResource("1")
+collision_layer = 4
+collision_mask = 1
+
+[node name="Visuals" type="Node2D" parent="."]
+
+[node name="Shadow" type="Sprite2D" parent="Visuals"]
+texture = ExtResource("3")
+modulate = Color(1, 1, 1, 0.5)
+
+[node name="Sprite2D" type="Sprite2D" parent="Visuals"]
+position = Vector2(0, -11)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -7)
+
+[node name="HealthComponent" parent="." instance=ExtResource("2")]
+
+[node name="HurtSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4")
+bus = &"SFX"
+volume_db = -12.0
+max_distance = 650.0

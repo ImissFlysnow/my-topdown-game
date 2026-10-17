@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="EnemyData" load_steps=3 format=3]
+[ext_resource type="Script" path="res://Data/Enemies/enemy_data.gd" id="1"]
+[ext_resource type="Texture2D" path="res://Assets/Boss/thorn_sovereign_sheet.png" id="2"]
+[resource]
+script = ExtResource("1")
+enemy_name = "荆棘树王"
+texture = ExtResource("2")
+max_health = 180.0
+move_speed = 45.0
+contact_damage = 2
+experience = 18
+coins = 12
+size_scale = 3.1
+knockback_resistance = 0.1

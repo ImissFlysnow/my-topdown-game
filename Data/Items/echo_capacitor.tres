@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=3 format=3]
+[ext_resource type="Script" path="res://Data/Items/item_data.gd" id="1"]
+[ext_resource type="Texture2D" path="res://Assets/Items/echo_capacitor.png" id="2"]
+[resource]
+script = ExtResource("1")
+item_name = "回响电容"
+kind = 13
+icon = ExtResource("2")
+shop_price = 16
+max_stacks = 1
+description = "主动技能造成伤害后返还2能量，每次施放仅一次。"

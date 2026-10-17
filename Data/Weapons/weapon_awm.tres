@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="WeaponData" format=3 uid="uid://chujffwmwenfq"]
+
+[ext_resource type="Texture2D" uid="uid://b3162fce4jytf" path="res://01.基础资源/Assets/Sprites/Tiles/Weapons/Tiles/tile_0003.png" id="1_bsrrc"]
+[ext_resource type="PackedScene" uid="uid://cwtp5ntuh4x8b" path="res://Scene/Bullets/bullet_awm.tscn" id="1_e04mp"]
+[ext_resource type="Script" uid="uid://c1aew7mkftj1p" path="res://Data/Weapons/weapon_data.gd" id="2_e04mp"]
+
+[resource]
+script = ExtResource("2_e04mp")
+weapon_name = "AWM"
+icon = ExtResource("1_bsrrc")
+damage = 5.0
+cooldown = 2.0
+mana_cost = 3.0
+spread = 0.1
+bullet_speed = 400.0
+bullet_scene = ExtResource("1_e04mp")
+metadata/_custom_type_script = "uid://c1aew7mkftj1p"

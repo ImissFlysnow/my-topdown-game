@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="WeaponData" format=3 uid="uid://jliajh6xne5f"]
+
+[ext_resource type="PackedScene" uid="uid://bvwmci4yr0gk" path="res://Scene/Bullets/bullet_uzi.tscn" id="1_d6mai"]
+[ext_resource type="Texture2D" uid="uid://dhmowywd5bkl7" path="res://01.基础资源/Assets/Sprites/Tiles/Weapons/Tiles/tile_0002.png" id="1_ywvm0"]
+[ext_resource type="Script" uid="uid://c1aew7mkftj1p" path="res://Data/Weapons/weapon_data.gd" id="2_d6mai"]
+
+[resource]
+script = ExtResource("2_d6mai")
+weapon_name = "Uzi"
+icon = ExtResource("1_ywvm0")
+damage = 0.6
+cooldown = 0.1
+mana_cost = 0.3
+spread = 7.0
+bullet_scene = ExtResource("1_d6mai")
+metadata/_custom_type_script = "uid://c1aew7mkftj1p"

@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=3 format=3]
+[ext_resource type="Script" path="res://Data/Items/item_data.gd" id="1"]
+[ext_resource type="Texture2D" path="res://Assets/Items/energy_crystal.png" id="2"]
+[resource]
+script = ExtResource("1")
+item_name = "聚能晶核"
+kind = 17
+icon = ExtResource("2")
+shop_price = 14
+max_stacks = 2
+description = "伤害回能效率+25%/件，仍须战斗中实际造成伤害。"

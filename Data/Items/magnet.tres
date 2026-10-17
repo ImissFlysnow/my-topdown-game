@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=3 format=3]
+[ext_resource type="Script" path="res://Data/Items/item_data.gd" id="1"]
+[ext_resource type="Texture2D" path="res://01.基础资源/Assets/Sprites/Items/Item_White18.png" id="2"]
+[resource]
+script = ExtResource("1")
+item_name = "拾荒者护符"
+kind = 6
+icon = ExtResource("2")
+amount = 30.00
+description = "拾取范围 +30"
+shop_price = 4

@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=3 format=3]
+[ext_resource type="Script" path="res://Data/Items/item_data.gd" id="1"]
+[ext_resource type="Texture2D" path="res://Assets/Items/wind_boots.png" id="2"]
+[resource]
+script = ExtResource("1")
+item_name = "风行靴"
+kind = 16
+icon = ExtResource("2")
+shop_price = 8
+max_stacks = 2
+description = "实际移动时受到的伤害降低10%/件。"

@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=3 format=3]
+[ext_resource type="Script" path="res://Data/Items/item_data.gd" id="1"]
+[ext_resource type="Texture2D" path="res://01.基础资源/Assets/Sprites/Items/Item_White15.png" id="2"]
+[resource]
+script = ExtResource("1")
+item_name = "猎首勋章"
+kind = 9
+icon = ExtResource("2")
+amount = 0.2
+requires_ranged = false
+description = "精英 / Boss 伤害 +20%"
+shop_price = 8

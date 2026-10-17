@@ -1,0 +1,131 @@
+[gd_resource type="SpriteFrames" format=3 uid="uid://dvj01l651bs7u"]
+
+[ext_resource type="Texture2D" uid="uid://c1kg7uie5k5po" path="res://Assets/Boss/ember_stalker_sheet.png" id="1"]
+
+[sub_resource type="AtlasTexture" id="Frame_2_0"]
+atlas = ExtResource("1")
+region = Rect2(0, 627, 313.5, 313.5)
+
+[sub_resource type="AtlasTexture" id="Frame_2_1"]
+atlas = ExtResource("1")
+region = Rect2(330, 627, 275, 313.5)
+margin = Rect2(16.5, 0, 38.5, 0)
+
+[sub_resource type="AtlasTexture" id="Frame_1_0"]
+atlas = ExtResource("1")
+region = Rect2(0, 313.5, 313.5, 313.5)
+
+[sub_resource type="AtlasTexture" id="Frame_0_0"]
+atlas = ExtResource("1")
+region = Rect2(0, 0, 313.5, 313.5)
+
+[sub_resource type="AtlasTexture" id="Frame_3_0"]
+atlas = ExtResource("1")
+region = Rect2(0, 940.5, 313.5, 313.5)
+
+[sub_resource type="AtlasTexture" id="Frame_3_1"]
+atlas = ExtResource("1")
+region = Rect2(313.5, 940.5, 313.5, 313.5)
+
+[sub_resource type="AtlasTexture" id="Frame_3_2"]
+atlas = ExtResource("1")
+region = Rect2(627, 940.5, 313.5, 313.5)
+
+[sub_resource type="AtlasTexture" id="Frame_3_3"]
+atlas = ExtResource("1")
+region = Rect2(940.5, 940.5, 313.5, 313.5)
+
+[sub_resource type="AtlasTexture" id="Frame_0_1"]
+atlas = ExtResource("1")
+region = Rect2(313.5, 0, 313.5, 313.5)
+
+[sub_resource type="AtlasTexture" id="Frame_0_2"]
+atlas = ExtResource("1")
+region = Rect2(627, 0, 313.5, 313.5)
+
+[sub_resource type="AtlasTexture" id="Frame_0_3"]
+atlas = ExtResource("1")
+region = Rect2(940.5, 0, 313.5, 313.5)
+
+[sub_resource type="AtlasTexture" id="Frame_1_1"]
+atlas = ExtResource("1")
+region = Rect2(313.5, 313.5, 313.5, 313.5)
+
+[sub_resource type="AtlasTexture" id="Frame_1_2"]
+atlas = ExtResource("1")
+region = Rect2(627, 313.5, 313.5, 313.5)
+
+[sub_resource type="AtlasTexture" id="Frame_1_3"]
+atlas = ExtResource("1")
+region = Rect2(940.5, 313.5, 313.5, 313.5)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("Frame_2_0")
+}, {
+"duration": 1.0,
+"texture": SubResource("Frame_2_1")
+}, {
+"duration": 1.0,
+"texture": SubResource("Frame_1_0")
+}, {
+"duration": 1.0,
+"texture": SubResource("Frame_0_0")
+}],
+"loop": 0,
+"name": &"attack",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("Frame_3_0")
+}, {
+"duration": 1.0,
+"texture": SubResource("Frame_3_1")
+}, {
+"duration": 1.0,
+"texture": SubResource("Frame_3_2")
+}, {
+"duration": 1.0,
+"texture": SubResource("Frame_3_3")
+}],
+"loop": 0,
+"name": &"death",
+"speed": 7.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("Frame_0_0")
+}, {
+"duration": 1.0,
+"texture": SubResource("Frame_0_1")
+}, {
+"duration": 1.0,
+"texture": SubResource("Frame_0_2")
+}, {
+"duration": 1.0,
+"texture": SubResource("Frame_0_3")
+}],
+"loop": 1,
+"name": &"idle",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("Frame_1_0")
+}, {
+"duration": 1.0,
+"texture": SubResource("Frame_1_1")
+}, {
+"duration": 1.0,
+"texture": SubResource("Frame_1_2")
+}, {
+"duration": 1.0,
+"texture": SubResource("Frame_1_3")
+}],
+"loop": 1,
+"name": &"walk",
+"speed": 6.0
+}]

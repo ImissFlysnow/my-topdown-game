@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="WeaponData" format=3 uid="uid://qwyi5xn01skg"]
+
+[ext_resource type="Texture2D" uid="uid://cgch73n7h4u3r" path="res://01.基础资源/Assets/Sprites/Tiles/Weapons/Tiles/tile_0006.png" id="1_3hskj"]
+[ext_resource type="PackedScene" uid="uid://b7okasjfpnyy1" path="res://Scene/Bullets/bullet_mp_7.tscn" id="1_ft3qy"]
+[ext_resource type="Script" uid="uid://c1aew7mkftj1p" path="res://Data/Weapons/weapon_data.gd" id="2_ft3qy"]
+
+[resource]
+script = ExtResource("2_ft3qy")
+weapon_name = "MP7"
+icon = ExtResource("1_3hskj")
+damage = 1.0
+cooldown = 0.1
+mana_cost = 1.0
+spread = 7.0
+bullet_speed = 300.0
+bullet_scene = ExtResource("1_ft3qy")
+metadata/_custom_type_script = "uid://c1aew7mkftj1p"

@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=3 format=3]
+[ext_resource type="Script" path="res://Data/Items/item_data.gd" id="1"]
+[ext_resource type="Texture2D" path="res://Assets/Items/talent_badge.png" id="2"]
+[resource]
+script = ExtResource("1")
+item_name = "天赋徽章"
+kind = 22
+icon = ExtResource("2")
+shop_price = 10
+max_stacks = 2
+description = "当前被动技能的百分比效果增强20%/件。"

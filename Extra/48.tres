@@ -1,0 +1,7 @@
+[gd_resource type="LabelSettings" format=3 uid="uid://ctwnsrowqvua2"]
+
+[ext_resource type="FontFile" uid="uid://cmkei0r5t77jr" path="res://01.基础资源/Assets/Font/Lilian.ttf" id="1_r3fb1"]
+
+[resource]
+font = ExtResource("1_r3fb1")
+font_size = 48

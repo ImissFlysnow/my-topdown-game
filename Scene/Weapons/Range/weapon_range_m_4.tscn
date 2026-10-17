@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://e4l8msp3u5qt"]
+
+[ext_resource type="PackedScene" uid="uid://cj4776ho2jf0l" path="res://Scene/Weapons/Range/weapon_range_base.tscn" id="1_he86u"]
+[ext_resource type="Resource" uid="uid://ph2uyfnm6odn" path="res://Data/Weapons/weapon_m4.tres" id="2_k3u6l"]
+[ext_resource type="Texture2D" uid="uid://d0unfm6gf7rj5" path="res://01.基础资源/Assets/Sprites/Tiles/Weapons/Tiles/tile_0004.png" id="3_62q5f"]
+
+[node name="WeaponRangeM4" unique_id=1339090454 instance=ExtResource("1_he86u")]
+data = ExtResource("2_k3u6l")
+
+[node name="Sprite2D" parent="Pivot" parent_id_path=PackedInt32Array(1387622967) index="0" unique_id=2098608435]
+position = Vector2(11.666666, 0)
+texture = ExtResource("3_62q5f")
+
+[node name="FirePos" parent="Pivot" parent_id_path=PackedInt32Array(1387622967) index="1" unique_id=1962197094]
+position = Vector2(21.666666, -2.5)

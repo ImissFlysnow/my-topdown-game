@@ -1,0 +1,218 @@
+[
+  {
+    "id": "bunny_dash",
+    "name": "疾风跃迁",
+    "character": "Bunny",
+    "kind": "active",
+    "cost": 10,
+    "cooldown": 3,
+    "description": "向鼠标方向冲刺并短暂无敌，沿途造成80%技能伤害；攻速提高20%，持续2秒。"
+  },
+  {
+    "id": "bunny_blade",
+    "name": "月牙回旋",
+    "character": "Bunny",
+    "kind": "active",
+    "cost": 20,
+    "cooldown": 4,
+    "description": "投出回旋月刃，去程和回程各造成100%技能伤害，同一敌人每程仅受击一次。"
+  },
+  {
+    "id": "bunny_decoy",
+    "name": "脱兔残影",
+    "character": "Bunny",
+    "kind": "active",
+    "cost": 10,
+    "cooldown": 5,
+    "description": "留下2秒残影吸引普通敌人，移速提高30%，持续3秒；Boss不受嘲讽。"
+  },
+  {
+    "id": "bunny_charge",
+    "name": "蓄势待发",
+    "character": "Bunny",
+    "kind": "passive",
+    "cost": 0,
+    "cooldown": 0,
+    "description": "战斗中移动累计160像素，下一次普通攻击伤害提高25%；最多储存一次。"
+  },
+  {
+    "id": "bunny_combo",
+    "name": "灵巧连击",
+    "character": "Bunny",
+    "kind": "passive",
+    "cost": 0,
+    "cooldown": 0,
+    "description": "连续3次普通攻击命中同一目标，下一次对其普通攻击伤害提高20%；换目标重置。"
+  },
+  {
+    "id": "bunny_light",
+    "name": "轻盈步伐",
+    "character": "Bunny",
+    "kind": "passive",
+    "cost": 0,
+    "cooldown": 0,
+    "description": "受到的减速效果降低30%。"
+  },
+  {
+    "id": "cat_blink",
+    "name": "暗影瞬步",
+    "character": "Cat",
+    "kind": "active",
+    "cost": 10,
+    "cooldown": 3,
+    "description": "向鼠标方向闪现，获得0.25秒无敌；3秒内下一次普通攻击必定暴击。"
+  },
+  {
+    "id": "cat_mark",
+    "name": "猎杀印记",
+    "character": "Cat",
+    "kind": "active",
+    "cost": 20,
+    "cooldown": 4,
+    "description": "标记鼠标附近一名可见敌人5秒，对其伤害提高25%；对Boss提高15%。"
+  },
+  {
+    "id": "cat_smoke",
+    "name": "猫步烟幕",
+    "character": "Cat",
+    "kind": "active",
+    "cost": 20,
+    "cooldown": 5,
+    "description": "在鼠标处释放持续3秒的烟幕：敌人减速30%，敌方弹丸减速35%。"
+  },
+  {
+    "id": "cat_crit",
+    "name": "锐利直觉",
+    "character": "Cat",
+    "kind": "passive",
+    "cost": 0,
+    "cooldown": 0,
+    "description": "普通攻击暴击率提高8个百分点。"
+  },
+  {
+    "id": "cat_execute",
+    "name": "猎手本能",
+    "character": "Cat",
+    "kind": "passive",
+    "cost": 0,
+    "cooldown": 0,
+    "description": "对生命低于30%的敌人，直接伤害提高20%。"
+  },
+  {
+    "id": "cat_guard",
+    "name": "危险预感",
+    "character": "Cat",
+    "kind": "passive",
+    "cost": 0,
+    "cooldown": 0,
+    "description": "连续6秒未受到攻击后，下一次受到的伤害降低30%；触发后重新蓄势。"
+  },
+  {
+    "id": "dog_roar",
+    "name": "震荡战吼",
+    "character": "Dog",
+    "kind": "active",
+    "cost": 20,
+    "cooldown": 4,
+    "description": "周围敌人受到150%技能伤害，普通敌人恐惧1秒；自身伤害提高20%，持续3秒。"
+  },
+  {
+    "id": "dog_shield",
+    "name": "守卫壁垒",
+    "character": "Dog",
+    "kind": "active",
+    "cost": 20,
+    "cooldown": 5,
+    "description": "获得生命上限35%的临时护盾，持续4秒；期间免疫击退，不回复生命。"
+  },
+  {
+    "id": "dog_charge",
+    "name": "猛犬冲撞",
+    "character": "Dog",
+    "kind": "active",
+    "cost": 30,
+    "cooldown": 4,
+    "description": "向鼠标方向冲撞，沿途造成220%技能伤害并眩晕普通敌人0.8秒；Boss仅轻微减速。"
+  },
+  {
+    "id": "dog_bravery",
+    "name": "越战越勇",
+    "character": "Dog",
+    "kind": "passive",
+    "cost": 0,
+    "cooldown": 0,
+    "description": "每个100像素内可见敌人使伤害提高3%，最多提高15%。"
+  },
+  {
+    "id": "dog_hide",
+    "name": "坚韧皮毛",
+    "character": "Dog",
+    "kind": "passive",
+    "cost": 0,
+    "cooldown": 0,
+    "description": "来自敌人身体接触的伤害降低20%。"
+  },
+  {
+    "id": "dog_bite",
+    "name": "撕咬连击",
+    "character": "Dog",
+    "kind": "passive",
+    "cost": 0,
+    "cooldown": 0,
+    "description": "每第4次普通攻击额外造成40%物理伤害；霰弹的一次开火只计一次。"
+  },
+  {
+    "id": "mouse_bomb",
+    "name": "五行爆瓶",
+    "character": "Mouse",
+    "kind": "active",
+    "cost": 30,
+    "cooldown": 5,
+    "description": "向鼠标处投掷元素爆瓶，造成250%技能伤害；使用最强附魔元素，无附魔时为土。"
+  },
+  {
+    "id": "mouse_vortex",
+    "name": "磁力涡流",
+    "character": "Mouse",
+    "kind": "active",
+    "cost": 20,
+    "cooldown": 5,
+    "description": "在鼠标处制造2秒涡流，牵引普通敌人并造成3次伤害，合计240%技能伤害。"
+  },
+  {
+    "id": "mouse_mines",
+    "name": "机关雷阵",
+    "character": "Mouse",
+    "kind": "active",
+    "cost": 20,
+    "cooldown": 5,
+    "description": "在鼠标附近布置3枚地雷，持续6秒；接敌爆炸，各造成100%技能伤害并减速。"
+  },
+  {
+    "id": "mouse_elements",
+    "name": "元素亲和",
+    "character": "Mouse",
+    "kind": "passive",
+    "cost": 0,
+    "cooldown": 0,
+    "description": "造成的元素伤害提高15%，包括武器附魔、元素爆瓶和燃烧。"
+  },
+  {
+    "id": "mouse_collect",
+    "name": "搜集专家",
+    "character": "Mouse",
+    "kind": "passive",
+    "cost": 0,
+    "cooldown": 0,
+    "description": "拾取半径提高35%，经验获取提高15%；小数经验会累计。"
+  },
+  {
+    "id": "mouse_ambush",
+    "name": "趁乱出击",
+    "character": "Mouse",
+    "kind": "passive",
+    "cost": 0,
+    "cooldown": 0,
+    "description": "对减速、眩晕或恐惧中的敌人，直接伤害提高15%。"
+  }
+]
