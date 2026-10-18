@@ -344,12 +344,45 @@ func test_greed() -> void:
 	check(coin_total() - before == 2, "pouch bonus can trigger again on the new floor")
 	await cleanup()
 
+func test_shop_healing() -> void:
+	await setup_arena()
+	arena.player.position = arena.shop_service.position
+	arena.player.coins = 500
+	var prices := [[10, 12, 14, 16, 18], [18, 22, 26, 29, 33], [32, 39, 45, 52, 58]]
+	for index in ItemLoot.HEALING_POTIONS.size():
+		var potion: ItemData = ItemLoot.HEALING_POTIONS[index]
+		for floor_index in 5:
+			arena.current_floor = floor_index + 1
+			check(arena.shop_price(potion) == prices[index][floor_index], "%s floor %d adds twenty percent of its doubled starting price" % [potion.item_name, floor_index + 1])
+		arena.current_floor = 1
+		arena.player.health_component.init_health(100)
+		arena.player.health_component.current_health = 10
+		arena.shop_offers = [{"item": potion, "price": arena.shop_price(potion), "sold": false}]
+		var coins := arena.player.coins
+		check(arena.buy_shop(0) and arena.player.coins == coins - potion.shop_price and arena.player.health_component.current_health == minf(100, 10 + potion.amount * 100), potion.item_name + " heals its advertised percentage and charges once")
+		check(arena.player.inventory.is_empty() and not arena.buy_shop(0), potion.item_name + " is consumed immediately and cannot be bought twice from one slot")
+		arena.player.health_component.current_health = 100
+		coins = arena.player.coins
+		arena.shop_offers = [{"item": potion, "price": arena.shop_price(potion), "sold": false}]
+		check(not arena.buy_shop(0) and arena.player.coins == coins, potion.item_name + " cannot waste money at full health")
+		arena._spawn_pickup(potion, arena.player.position)
+	check(get_tree().get_nodes_in_group("pickups").is_empty(), "shop medicine is never spawned as enemy or chest loot")
+	var seen: Dictionary = {}
+	for seed_value in 100:
+		arena.dungeon.rng.seed = seed_value + 1
+		arena._roll_shop_offers()
+		for offer: Dictionary in arena.shop_offers:
+			seen[offer.item.item_name] = true
+	check(ItemLoot.HEALING_POTIONS.all(func(item: ItemData): return seen.has(item.item_name)), "all three medicines appear in the random shop stock")
+	await cleanup()
+
 func run() -> void:
 	await test_tiers()
 	await test_shops()
 	await test_piercing()
 	await test_hit_effects()
 	await test_greed()
+	await test_shop_healing()
 	print("RESULT: %d/%d item checks passed" % [checks - failures, checks])
 	Music.stop()
 	await get_tree().create_timer(0.1).timeout

@@ -47,9 +47,18 @@ func run() -> void:
 	arena.hud.show_shop()
 	await capture("skill-shop-insufficient-gold")
 	arena.hud.hide_modal()
+	arena.player.coins = 80
+	arena.player.health_component.current_health = arena.player.health_component.max_health * 0.3
+	arena.hud.update_health(arena.player.health_component.current_health, arena.player.health_component.max_health)
+	arena.shop_offers.clear()
+	for potion: ItemData in ItemLoot.HEALING_POTIONS:
+		arena.shop_offers.append({"item": potion, "price": arena.shop_price(potion), "sold": false})
+	arena.hud.show_shop()
+	await capture("shop-health-potions")
+	arena.hud.hide_modal()
 	arena.queue_free()
 	await get_tree().process_frame
 	Music.stop()
 	await get_tree().create_timer(0.1).timeout
-	print("Saved five shop previews: ", ProjectSettings.globalize_path(folder))
+	print("Saved six shop previews: ", ProjectSettings.globalize_path(folder))
 	get_tree().quit()

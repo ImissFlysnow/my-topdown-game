@@ -177,7 +177,7 @@ func test_healing() -> void:
 	arena.player.weapon_controller.set_physics_process(false)
 	await frames()
 	check(get_tree().get_nodes_in_group("pickups").is_empty(), "floor start has no free healing pickup")
-	check(arena.shop_offers.size() == 3 and arena.shop_offers.all(func(offer: Dictionary) -> bool: return offer.item.kind >= ItemData.Kind.DAMAGE), "shop offers three permanent upgrades without healing")
+	check(arena.shop_offers.size() == 3 and arena.shop_offers.all(func(offer: Dictionary) -> bool: return offer.item.kind >= ItemData.Kind.DAMAGE), "shop offers three upgrades or shop-only healing potions")
 	var stocks: Dictionary = {}
 	for offer: Dictionary in arena.shop_offers:
 		stocks[offer.item] = true
@@ -205,6 +205,7 @@ func test_healing() -> void:
 	check(arena.player.health_component.current_health == health_after_levels and not arena.room_chests[1].locked, "challenge clear unlocks chest without healing")
 	arena.player.position = arena.shop_service.position
 	arena.player.coins = 100
+	arena.shop_offers[0] = {"item": Arena.UPGRADES[0], "price": arena.shop_price(Arena.UPGRADES[0]), "sold": false}
 	var price: int = arena.shop_offers[0].price
 	check(arena.buy_shop(0) and arena.player.health_component.current_health == health_after_levels and arena.player.coins == 100 - price, "buying a permanent upgrade never heals")
 	arena.hud.hide_modal()

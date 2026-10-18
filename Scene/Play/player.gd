@@ -157,6 +157,8 @@ func hit_effects() -> Dictionary:
 	return {"hunter_bonus": hunter_bonus, "frost_chance": minf(0.8, frost_stacks * 0.2), "burn_chance": minf(0.8, ember_stacks * 0.2)}
 
 func can_collect_item(item: ItemData) -> bool:
+	if item.kind == ItemData.Kind.SHOP_HEALING and health_component.current_health >= health_component.max_health:
+		return false
 	if item.kind == ItemData.Kind.ECHO_CAPACITOR and skills.active_id not in ["bunny_dash", "bunny_blade", "dog_roar", "dog_charge", "mouse_bomb", "mouse_vortex", "mouse_mines"]:
 		return false
 	return not health_component.is_dead and item.kind != ItemData.Kind.HEAL and (not item.requires_ranged or has_ranged_weapon()) and item_effects.can_collect(item)
@@ -181,6 +183,8 @@ func collect_item(item: ItemData) -> bool:
 				EventBus.on_item_collected.emit("升级！Lv.%d · 伤害 +10%% · 生命上限 +1 · 当前生命 +1" % level)
 		ItemData.Kind.COIN:
 			coins += int(item.amount)
+		ItemData.Kind.SHOP_HEALING:
+			health_component.heal(health_component.max_health * item.amount)
 		ItemData.Kind.DAMAGE:
 			damage_multiplier = damage_multiplier * (1.0 + item.amount) if item.proportional else damage_multiplier + item.amount
 		ItemData.Kind.SPEED:
@@ -204,7 +208,7 @@ func collect_item(item: ItemData) -> bool:
 			ember_stacks += 1
 		ItemData.Kind.GREEDY_POUCH:
 			greedy_pouches += maxi(1, roundi(item.amount))
-	if item.kind >= ItemData.Kind.DAMAGE:
+	if item.kind >= ItemData.Kind.DAMAGE and item.kind != ItemData.Kind.SHOP_HEALING:
 		inventory[item.item_name] = inventory.get(item.item_name, 0) + 1
 	if item.kind != ItemData.Kind.EXPERIENCE and item.kind != ItemData.Kind.COIN:
 		EventBus.on_item_collected.emit(item.item_name + " · " + item.description.replace("\n", " · "))

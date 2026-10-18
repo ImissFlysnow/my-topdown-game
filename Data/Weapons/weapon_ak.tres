@@ -8,7 +8,7 @@
 script = ExtResource("2_vs4in")
 weapon_name = "AK47"
 icon = ExtResource("1_ms0g4")
-damage = 1.0
+damage = 2.25
 cooldown = 0.3
 mana_cost = 1.0
 spread = 7.0

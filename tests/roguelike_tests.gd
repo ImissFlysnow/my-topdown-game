@@ -254,8 +254,9 @@ func test_rewards_and_services() -> void:
 	arena.player.coins = 100
 	arena.player.health_component.heal(999)
 	var coins := arena.player.coins
-	check(arena.shop_offers.all(func(offer: Dictionary) -> bool: return offer.item.kind >= ItemData.Kind.DAMAGE), "shop stocks only permanent upgrades")
+	check(arena.shop_offers.all(func(offer: Dictionary) -> bool: return offer.item.kind >= ItemData.Kind.DAMAGE), "shop stocks upgrades and shop-only healing potions")
 	arena.player.health_component.take_damage(1)
+	arena.shop_offers[0] = {"item": Arena.UPGRADES[0], "price": arena.shop_price(Arena.UPGRADES[0]), "sold": false}
 	var health_before_purchase := arena.player.health_component.current_health
 	var price: int = arena.shop_offers[0].price
 	check(arena.buy_shop(0) and arena.player.coins == coins - price and arena.player.health_component.current_health == health_before_purchase, "shop purchase deducts exact price without healing")

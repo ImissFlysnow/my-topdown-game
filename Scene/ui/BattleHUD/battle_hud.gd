@@ -335,6 +335,7 @@ func show_shop() -> void:
 		button.tooltip_text = item.item_name + "\n" + item.description
 		var icon := TextureRect.new()
 		icon.texture = item.icon
+		icon.modulate = item.tint
 		icon.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 		icon.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 		icon.mouse_filter = Control.MOUSE_FILTER_IGNORE
@@ -346,6 +347,8 @@ func show_shop() -> void:
 		var limit_text := "限 %d 件 · 已有 %d" % [item.max_stacks, arena.player.item_effects.count(item.kind)] if item.max_stacks > 0 else "永久增益 · 可叠加"
 		if item.kind == ItemData.Kind.EMERGENCY_BATTERY:
 			limit_text = "每局限购 1 件"
+		elif item.kind == ItemData.Kind.SHOP_HEALING:
+			limit_text = "购买即恢复 · 消耗品"
 		var limit_label := _label(button, limit_text, Vector2(50, 32), 10, Color("c2b7d5"))
 		limit_label.size = Vector2(124, 24)
 		limit_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
@@ -357,6 +360,8 @@ func show_shop() -> void:
 		description.add_theme_constant_override("line_spacing", 2)
 		description.add_theme_constant_override("outline_size", 1)
 		var status := "已售出" if offer.sold else ("已达上限" if capped else "%d 金币%s" % [offer.price, " · 不足" if arena.player.coins < int(offer.price) else ""])
+		if not offer.sold and capped and item.kind == ItemData.Kind.SHOP_HEALING:
+			status = "生命已满"
 		var price_label := _label(button, status, Vector2(10, 143), 12, Color("ffe3a0"))
 		price_label.size = Vector2(164, 18)
 		price_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER

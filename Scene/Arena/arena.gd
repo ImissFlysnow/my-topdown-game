@@ -7,7 +7,7 @@ const ENEMY_SCENE = preload("res://Scene/Enemies/enemy.tscn")
 const BOSS_SCENE = preload("res://Scene/Enemies/boss.tscn")
 const BOSS_SCENES: Array[PackedScene] = [BOSS_SCENE, preload("res://Scene/Enemies/boss_summoner.tscn"), preload("res://Scene/Enemies/boss_ranged.tscn"), preload("res://Scene/Enemies/boss_assassin.tscn"), preload("res://Scene/Enemies/boss_warden.tscn")]
 const BOSS_DATA: Array[EnemyData] = [preload("res://Data/Enemies/boss.tres"), preload("res://Data/Enemies/thorn_sovereign.tres"), preload("res://Data/Enemies/tide_archmage.tres"), preload("res://Data/Enemies/ember_stalker.tres"), preload("res://Data/Enemies/bastion_warden.tres")]
-const BOSS_HINTS = ["躲避蓄力重击，半血后进入狂暴", "清理召唤物，避开减速荆棘和毒种", "横向躲避连射，追踪弹片刻后失去追踪", "注意闪现落点，横向避开已锁定的突进", "厚甲追击 · 破盾停顿 1 秒 · 失甲反击 · 三阶段重铸"]
+const BOSS_HINTS = ["躲避蓄力重击，半血后进入狂暴", "井字荆棘封路 · 预警后生长 · 清理召唤物", "水块持续减速 · 离开水面躲避追踪弹", "突进留下火径 · 连续踩火 1 秒扣 1 生命", "破盾后远离自爆圆 · 失甲反击 · 三阶段重铸"]
 const ENEMIES: Array[EnemyData] = [preload("res://Data/Enemies/slime.tres"), preload("res://Data/Enemies/runner.tres"), preload("res://Data/Enemies/brute.tres")]
 const EXPERIENCE_ITEM: ItemData = preload("res://Data/Items/experience.tres")
 const COIN_ITEM: ItemData = preload("res://Data/Items/coin.tres")
@@ -115,6 +115,9 @@ func _setup_floor() -> void:
 	dungeon.seal_room(5, true)
 
 func shop_price(item: ItemData) -> int:
+	if item.kind == ItemData.Kind.SHOP_HEALING:
+		# Each floor adds 20% of the first-floor price, rounded up to whole coins.
+		return ceili(item.shop_price * (current_floor + 4) / 5.0)
 	return item.shop_price + current_floor - 1
 
 func _roll_shop_offers(avoid_previous: bool = false) -> void:
@@ -123,11 +126,12 @@ func _roll_shop_offers(avoid_previous: bool = false) -> void:
 	catalog.append_array(UPGRADES)
 	catalog.append_array(ItemLoot.SHOP_PERKS)
 	catalog.append_array(ItemLoot.SKILL_PERKS)
+	catalog.append_array(ItemLoot.HEALING_POTIONS)
 	var previous: Array[ItemData] = []
 	for offer: Dictionary in shop_offers:
 		previous.append(offer.item)
 	for item: ItemData in catalog:
-		if player.can_collect_item(item):
+		if item.kind == ItemData.Kind.SHOP_HEALING or player.can_collect_item(item):
 			stock.append(item)
 	if avoid_previous:
 		var alternatives: Array[ItemData] = []
@@ -433,8 +437,8 @@ func advance_floor() -> void:
 	hud.toast("进入第 %d / %d 层 · 敌人生命与伤害提升" % [current_floor, floor_count])
 
 func _spawn_pickup(item: ItemData, point: Vector2, amount: float = -1) -> void:
-	# Healing is offered only through the once-per-floor event choices.
-	if item.kind == ItemData.Kind.HEAL:
+	# Medicine is purchased in shops or granted by events, never dropped.
+	if item.kind in [ItemData.Kind.HEAL, ItemData.Kind.SHOP_HEALING]:
 		return
 	var pickup := Pickup.new()
 	pickup.data = item

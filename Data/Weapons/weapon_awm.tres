@@ -8,8 +8,8 @@
 script = ExtResource("2_e04mp")
 weapon_name = "AWM"
 icon = ExtResource("1_bsrrc")
-damage = 5.0
-cooldown = 2.0
+damage = 7.5
+cooldown = 1.0
 mana_cost = 3.0
 spread = 0.1
 bullet_speed = 400.0

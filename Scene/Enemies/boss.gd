@@ -105,6 +105,21 @@ func _attach_attack(attack: Node2D, point: Vector2) -> void:
 	attack.set_meta("boss_owner", get_instance_id())
 	get_parent().add_child(attack)
 
+func combat_room_rect() -> Rect2:
+	return dungeon.room_world_rect(room_id) if is_instance_valid(dungeon) and room_id >= 0 else room_bounds
+
+func _terrain(kind: BossTerrain.Kind, point: Vector2, warning: float, duration: float) -> BossTerrain:
+	var terrain := BossTerrain.new()
+	terrain.kind = kind
+	terrain.target = target
+	terrain.boss = weakref(self)
+	terrain.room = combat_room_rect()
+	terrain.tile_size = dungeon.cell_size if is_instance_valid(dungeon) else 24
+	terrain.warning_time = warning
+	terrain.active_duration = duration
+	_attach_attack(terrain, point)
+	return terrain
+
 func _warning_circle(point: Vector2, radius: float, duration: float) -> void:
 	var warning := BossTelegraph.new()
 	warning.radius = radius
@@ -186,9 +201,13 @@ func shield_value() -> float:
 func shield_maximum() -> float:
 	return 1
 
-func _clear_owned_attacks() -> void:
+func _clear_owned_attacks(preserve_break_burst: bool = false) -> void:
 	for attack in get_tree().get_nodes_in_group("enemy_attacks"):
 		if attack.get_meta("boss_owner", 0) == get_instance_id():
+			if preserve_break_burst and attack.get_meta("shield_break_burst", false):
+				continue
+			if attack.has_method("cancel"):
+				attack.cancel()
 			attack.set_process(false)
 			attack.set_physics_process(false)
 			if attack.is_in_group("spawn_markers"):

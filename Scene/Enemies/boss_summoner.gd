@@ -8,9 +8,9 @@ var skill_index: int = 0
 var casting_skill: int = 0
 
 func _start_slam() -> void:
-	casting_skill = skill_index % 3
+	casting_skill = skill_index % 4
 	skill_index += 1
-	_begin_cast(["荆棘召唤", "缠根花阵", "毒种扇射"][casting_skill], 0.9)
+	_begin_cast(["荆棘召唤", "缠根花阵", "毒种扇射", "井字荆棘"][casting_skill], 0.9)
 	_warning_circle(global_position, 44, 0.9)
 	if casting_skill == 1:
 		var side := global_position.direction_to(target.global_position).orthogonal()
@@ -18,6 +18,20 @@ func _start_slam() -> void:
 			var hazard := _hazard(target.global_position + side * (index - 1) * 95, 32, 0.55, 1.0, 3.6, 0.9)
 			hazard.slow_factor = 0.65
 			hazard.slow_seconds = 0.8
+	elif casting_skill == 3:
+		_summon_thorn_walls()
+
+func _summon_thorn_walls() -> BossTerrain:
+	var room := combat_room_rect()
+	var terrain := _terrain(BossTerrain.Kind.THORNS, room.position, 1.0, 4.0)
+	terrain.damage = data.contact_damage * damage_scale * 0.5
+	var width := terrain.tile_size * 2
+	for fraction in [1.0 / 3.0, 2.0 / 3.0]:
+		var x := floorf((room.size.x * fraction - width * 0.5) / terrain.tile_size) * terrain.tile_size
+		var y := floorf((room.size.y * fraction - width * 0.5) / terrain.tile_size) * terrain.tile_size
+		terrain.regions.append(Rect2(0, y, room.size.x, width))
+		terrain.regions.append(Rect2(x, 0, width, room.size.y))
+	return terrain
 
 func _tick_special_state(delta: float) -> void:
 	_move_in_room(delta, Vector2.ZERO)
@@ -81,4 +95,4 @@ func status_text() -> String:
 	if state == State.CAST:
 		return super.status_text()
 	_prune_minions()
-	return "召唤仆从 · 绿圈会减速 · 仆从 %d/%d" % [owned_minions.size(), minion_limit]
+	return "井字荆棘封路 4 秒 · 仆从 %d/%d" % [owned_minions.size(), minion_limit]

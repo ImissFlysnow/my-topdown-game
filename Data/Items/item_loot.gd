@@ -8,6 +8,7 @@ const TIER_COLORS = [Color("ddd8e8"), Color("8ae29b"), Color("80caff"), Color("d
 const POTIONS: Array[ItemData] = [preload("res://Data/Items/damage.tres"), preload("res://Data/Items/speed.tres"), preload("res://Data/Items/attack_speed.tres"), preload("res://Data/Items/magnet.tres")]
 const POTION_NAMES = ["力量药水", "疾行药水", "迅捷药水", "引力药水"]
 const STAT_NAMES = ["伤害", "移动速度", "攻击速度", "拾取范围"]
+const HEALING_POTIONS: Array[ItemData] = [preload("res://Data/Items/health_potion_small.tres"), preload("res://Data/Items/health_potion_medium.tres"), preload("res://Data/Items/health_potion_large.tres")]
 const SHOP_PERKS: Array[ItemData] = [preload("res://Data/Items/light_grip.tres"), preload("res://Data/Items/armor_piercing.tres"), preload("res://Data/Items/headhunter.tres"), preload("res://Data/Items/frost_shard.tres"), preload("res://Data/Items/ember_mark.tres"), preload("res://Data/Items/greedy_pouch.tres")]
 const SKILL_PERKS: Array[ItemData] = [preload("res://Data/Items/echo_capacitor.tres"), preload("res://Data/Items/energy_medal.tres"), preload("res://Data/Items/cast_gauntlet.tres"), preload("res://Data/Items/wind_boots.tres"), preload("res://Data/Items/energy_crystal.tres"), preload("res://Data/Items/haste_sigil.tres"), preload("res://Data/Items/speed_ribbon.tres"), preload("res://Data/Items/residual_charm.tres"), preload("res://Data/Items/combo_ring.tres"), preload("res://Data/Items/talent_badge.tres"), preload("res://Data/Items/emergency_battery.tres")]
 

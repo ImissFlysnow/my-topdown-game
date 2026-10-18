@@ -18,15 +18,33 @@ func _chase_player(delta: float) -> void:
 	_move_in_room(delta, direction * data.move_speed * (1.1 if enraged else 0.8))
 
 func _start_slam() -> void:
-	casting_skill = skill_index % 3
+	casting_skill = skill_index % 4
 	skill_index += 1
 	locked_direction = global_position.direction_to(target.global_position)
-	_begin_cast(["冰锥齐射", "潮汐螺旋", "追踪水珠"][casting_skill], 0.75)
+	_begin_cast(["冰锥齐射", "潮汐螺旋", "追踪水珠", "水域封场"][casting_skill], 0.75)
 	_warning_circle(global_position, 38, 0.75)
 	_warning_line(global_position, global_position + locked_direction * 230, 0.75)
 	volleys_left = (4 if enraged else 3) if casting_skill < 2 else 1
 	volley_timer = 0
 	burst_index = 0
+	if casting_skill in [2, 3]:
+		_flood_room()
+
+func _flood_room() -> BossTerrain:
+	for attack in get_tree().get_nodes_in_group("boss_terrain"):
+		if attack.kind == BossTerrain.Kind.WATER and attack.get_meta("boss_owner", 0) == get_instance_id():
+			attack.cancel()
+	var room := combat_room_rect()
+	var terrain := _terrain(BossTerrain.Kind.WATER, room.position, state_time, 6.0)
+	var size := Vector2.ONE * terrain.tile_size * 3
+	for index in (4 if enraged else 3):
+		var point: Vector2 = target.global_position if index == 0 else room.position + room.size * [Vector2(0.25, 0.25), Vector2(0.75, 0.75), Vector2(0.25, 0.75)][index - 1]
+		var local: Vector2 = ((point - room.position - size * 0.5) / terrain.tile_size).floor() * terrain.tile_size
+		local = local.clamp(Vector2.ZERO, room.size - size)
+		var block := Rect2(local, size)
+		if block not in terrain.regions:
+			terrain.regions.append(block)
+	return terrain
 
 func _tick_special_state(delta: float) -> void:
 	_move_in_room(delta, Vector2.ZERO)
@@ -40,7 +58,7 @@ func _tick_special_state(delta: float) -> void:
 		_fan(9 if enraged else 7, locked_direction, 1.05, 150, 0.8)
 	elif casting_skill == 1:
 		_ring(12, 112, 0.75, burst_index * 0.17, 0.35 if burst_index % 2 == 0 else -0.35)
-	else:
+	elif casting_skill == 2:
 		var count := 5 if enraged else 3
 		for index in count:
 			var direction := locked_direction.rotated(lerpf(-0.45, 0.45, float(index) / (count - 1)))
@@ -56,4 +74,4 @@ func _tick_special_state(delta: float) -> void:
 func status_text() -> String:
 	if state == State.CAST:
 		return "%s · %s" % [skill_name, "蓄力 %.1f 秒" % maxf(0, state_time) if state_time > 0 else "远程连射中"]
-	return "远程弹幕 · 保持移动，避开追踪水珠"
+	return "水域持续减速 45% · 离开水块躲避追踪水珠"

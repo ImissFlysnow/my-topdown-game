@@ -8,7 +8,7 @@
 script = ExtResource("1_5v7y6")
 weapon_name = "Pistol"
 icon = ExtResource("1_qufyp")
-damage = 1.0
+damage = 1.35
 cooldown = 0.3
 mana_cost = 1.0
 spread = 3.0

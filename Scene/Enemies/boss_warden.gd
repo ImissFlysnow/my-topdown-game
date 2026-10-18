@@ -62,6 +62,11 @@ func _break_shield() -> void:
 	shield_volley_timer = -1
 	volleys_left = 0
 	_clear_owned_attacks()
+	var room := combat_room_rect()
+	var burst := _terrain(BossTerrain.Kind.SHIELD_BURST, global_position, 1.0, 0.45)
+	burst.radius = sqrt(room.get_area() * 0.5 / PI)
+	burst.damage = data.contact_damage * damage_scale * 0.55
+	burst.set_meta("shield_break_burst", true)
 	boss_sprite.speed_scale = 1.0
 	boss_sprite.play("idle")
 	queue_redraw()
@@ -79,7 +84,7 @@ func _begin_reforge(full: bool) -> void:
 	slow_time = 0
 	burn_time = 0
 	burn_tick_damage = 0
-	_clear_owned_attacks()
+	_clear_owned_attacks(true)
 	boss_sprite.speed_scale = 1.0 / skill_time_multiplier
 	boss_sprite.play("attack")
 	_warning_circle(global_position, 56, reforge_duration)
@@ -228,7 +233,7 @@ func status_text() -> String:
 	if state == State.SHIELDED:
 		return stage + "厚甲追击 · 本体免伤 · 盾 %.0f/%.0f" % [shield_health, shield_capacity]
 	if state == State.VULNERABLE:
-		return stage + "破盾虚弱 %.1f秒 · 即将反击 · ×%.2f" % [maxf(0, state_time), vulnerable_multiplier]
+		return stage + "破盾虚弱/自爆 %.1f秒 · 远离 · ×%.2f" % [maxf(0, state_time), vulnerable_multiplier]
 	if exposed_time > 0:
 		return stage + "失甲 %.1f秒 · " % exposed_time + super.status_text()
 	return stage + super.status_text()

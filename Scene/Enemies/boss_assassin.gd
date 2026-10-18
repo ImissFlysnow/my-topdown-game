@@ -9,6 +9,14 @@ var dash_direction := Vector2.RIGHT
 var dashes_left: int = 0
 var teleporting := false
 var dash_hit := false
+var fire_trail: BossTerrain
+
+func _leave_fire(start: Vector2, end: Vector2) -> void:
+	if start.distance_squared_to(end) < 0.01:
+		return
+	if not is_instance_valid(fire_trail) or fire_trail.cancelled or fire_trail.is_queued_for_deletion():
+		fire_trail = _terrain(BossTerrain.Kind.FIRE, Vector2.ZERO, 0, 5.0)
+	fire_trail.add_fire_segment(start, end)
 
 func _start_slam() -> void:
 	casting_skill = skill_index % 3
@@ -73,6 +81,7 @@ func _tick_special_state(delta: float) -> void:
 	elif state == State.DASH:
 		var previous := global_position
 		_move_in_room(delta, dash_direction * dash_speed / skill_time_multiplier)
+		_leave_fire(previous, global_position)
 		var closest := Geometry2D.get_closest_point_to_segment(target.global_position, previous, global_position)
 		if not dash_hit and closest.distance_to(target.global_position) < 23:
 			target.take_hit(data.contact_damage * damage_scale, dash_direction, 120, false, element)
@@ -93,5 +102,5 @@ func status_text() -> String:
 	if state == State.BLINK:
 		return "%s · 落点和方向已锁定，横向躲避" % skill_name
 	if state == State.DASH:
-		return "突进中 · 连斩之间有预警间隔"
+		return "突进留下火径 · 连续踩火 1 秒扣 1 生命"
 	return super.status_text()

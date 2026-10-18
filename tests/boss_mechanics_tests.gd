@@ -194,7 +194,7 @@ func test_tree_freed_minions() -> void:
 		match cleanup_entry:
 			"summon":
 				boss.enraged = true
-				boss.skill_index = 3
+				boss.skill_index = 4
 				boss._start_slam()
 				boss._tick_special_state(0.91)
 				check(boss.owned_minions.size() == 1 and get_tree().get_nodes_in_group("spawn_markers").size() == 3, "second enraged summon prunes freed servants and schedules three replacements")
@@ -317,7 +317,7 @@ func test_warden() -> void:
 	boss.take_hit(9999)
 	check(boss.state == DungeonBoss.State.VULNERABLE and boss.health_component.current_health == hp and boss.shield_health == 0, "breaking shield opens vulnerability without overflow damage")
 	await frames()
-	check(get_tree().get_nodes_in_group("enemy_attacks").is_empty(), "shield break cancels pending pulse attacks")
+	check(get_tree().get_nodes_in_group("enemy_attacks").all(func(node: Node) -> bool: return node is BossTerrain and node.kind == BossTerrain.Kind.SHIELD_BURST), "shield break cancels pending pulse attacks and leaves only its new explosion")
 	arena.hud._process(0)
 	check(not arena.hud.boss_shield_bar.visible and arena.hud.boss_status_label.text.contains("破盾虚弱"), "HUD clearly shows vulnerability window")
 	boss.take_hit(2, Vector2.ZERO, 0, false, {Elements.Type.WOOD: 0.35})
