@@ -32,11 +32,11 @@ func _build_skill_entry() -> void:
 			style.set_texture_margin(side, 6)
 		button.add_theme_stylebox_override(state, style)
 	add_child(button)
-	button.set_anchors_and_offsets_preset(Control.PRESET_CENTER_TOP)
+	button.set_anchors_and_offsets_preset(Control.PRESET_CENTER_BOTTOM)
 	button.offset_left = -85
 	button.offset_right = 85
-	button.offset_top = 65
-	button.offset_bottom = 91
+	button.offset_top = -103
+	button.offset_bottom = -77
 	button.pressed.connect(open_skill_tree)
 	skill_summary = Label.new()
 	add_child(skill_summary)
